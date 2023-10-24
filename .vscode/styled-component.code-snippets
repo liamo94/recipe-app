@@ -1,0 +1,22 @@
+{
+  "Styled components theme shortcut": {
+    "scope": "css",
+    "prefix": "theme",
+    "body": "${({ theme }) => theme.$0}",
+    "description": "Inject theme variables into styled components"
+  },
+
+  "Styled components theme spacing shortcut": {
+    "scope": "css",
+    "prefix": "theme.spacing",
+    "body": "${({ theme }) => theme.spacing(${1:2})}$0",
+    "description": "Inject theme spacing into styled components"
+  },
+
+  "Styled components theme palette shortcut": {
+    "scope": "css",
+    "prefix": "theme.palette",
+    "body": "${({ theme }) => theme.palette.common.white}$0",
+    "description": "Inject theme palette into styled components"
+  }
+}
