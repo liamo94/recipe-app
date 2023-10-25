@@ -2,7 +2,7 @@ import { FC, useState, useEffect } from "react";
 import { useHistory, useLocation } from "react-router-dom";
 import styled from "styled-components";
 import { CircularProgress, Typography } from "@mui/material";
-import { useDebounce } from "@uidotdev/usehooks";
+import { useDebounce } from "usehooks-ts";
 
 import { RecipeModal } from "../RecipeModal";
 import { useRecipes } from "../../api";
