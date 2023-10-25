@@ -1,5 +1,6 @@
 import { FC, useState, ChangeEvent } from "react";
-import { Recipe } from "../api/types";
+import { useHistory } from "react-router-dom";
+import { styled } from "styled-components";
 import {
   Button,
   Dialog,
@@ -8,14 +9,14 @@ import {
   DialogTitle,
   TextField,
 } from "@mui/material";
-import { styled } from "styled-components";
+
 import {
+  Recipe,
   useCreateRecipe,
   useRecipe,
   useRecipes,
   useUpdateRecipe,
 } from "../api";
-import { useHistory } from "react-router-dom";
 
 interface RecipeModalProps {
   open: boolean;

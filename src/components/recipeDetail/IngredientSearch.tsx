@@ -1,7 +1,12 @@
 import { FC } from "react";
 import { Autocomplete, TextField, createFilterOptions } from "@mui/material";
-import { Ingredient, Recipe } from "../../api/types";
-import { useIngredients, useRecipe, useUpdateRecipe } from "../../api";
+import {
+  useIngredients,
+  useRecipe,
+  useUpdateRecipe,
+  Ingredient,
+  Recipe,
+} from "../../api";
 
 interface IngredientOptionType extends Ingredient {
   inputValue?: string;

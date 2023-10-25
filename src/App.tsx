@@ -48,7 +48,7 @@ export const BaseStyle: FC<PropsWithChildren> = ({ children }) => {
   );
 };
 
-const App: FC = () => {
+export const App: FC = () => {
   const queryClient = new QueryClient();
   return (
     <QueryClientProvider client={queryClient}>
@@ -58,5 +58,3 @@ const App: FC = () => {
     </QueryClientProvider>
   );
 };
-
-export default App;

@@ -1,12 +1,13 @@
-import { Button, TextField, Typography } from "@mui/material";
 import { FC, useState, useEffect } from "react";
-import styled from "styled-components";
-import AddIcon from "@mui/icons-material/Add";
-import { useRecipes } from "../../api";
 import { Link, useHistory, useLocation, useRouteMatch } from "react-router-dom";
-import { useQuery } from "../../useQuery";
-import { RecipeModal } from "../RecipeModal";
+import styled from "styled-components";
+import { Button, TextField, Typography } from "@mui/material";
+import AddIcon from "@mui/icons-material/Add";
 import { useDebounce } from "@uidotdev/usehooks";
+
+import { RecipeModal } from "../RecipeModal";
+import { useRecipes } from "../../api";
+import { useQuery } from "../../useQuery";
 
 export const RecipeList: FC = () => {
   const query = useQuery();

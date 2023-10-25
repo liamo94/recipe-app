@@ -1,10 +1,16 @@
 import { FC } from "react";
-import { Ingredient, Recipe } from "../../api/types";
+import { useParams } from "react-router-dom";
 import { styled } from "styled-components";
 import { Chip, Typography } from "@mui/material";
-import { useIngredients, useRecipe, useUpdateRecipe } from "../../api";
-import { useParams } from "react-router-dom";
+
 import { IngredientSearch } from "./IngredientSearch";
+import {
+  useIngredients,
+  useRecipe,
+  useUpdateRecipe,
+  Ingredient,
+  Recipe,
+} from "../../api";
 
 export const IngredientsContainer: FC<{ recipe: Recipe }> = ({ recipe }) => {
   const { ingredients } = recipe;

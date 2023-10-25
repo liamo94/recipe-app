@@ -1,12 +1,13 @@
 import { FC, useState } from "react";
 import { useParams } from "react-router-dom";
 import { styled } from "styled-components";
-import { useRecipe } from "../../api";
 import { Button, CircularProgress, Typography } from "@mui/material";
 import EditIcon from "@mui/icons-material/Edit";
+
 import { IngredientsContainer } from "./IngredientsContainer";
 import { RecipeModal } from "../RecipeModal";
 import { DeleteFooter } from "./DeleteFooter";
+import { useRecipe } from "../../api";
 
 export const RecipeDetails: FC = () => {
   const { recipeId } = useParams<{ recipeId: string }>();

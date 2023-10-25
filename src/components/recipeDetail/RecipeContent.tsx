@@ -1,7 +1,8 @@
-import { Button } from "@mui/material";
 import { FC, useState } from "react";
 import { Route, Switch } from "react-router-dom";
 import { styled } from "styled-components";
+import { Button } from "@mui/material";
+
 import { RecipeDetails } from "./RecipeDetails";
 import { RecipeModal } from "../RecipeModal";
 

@@ -1,10 +1,10 @@
 import { FC } from "react";
+import { useHistory } from "react-router-dom";
 import { styled } from "styled-components";
 import { Button } from "@mui/material";
 import DeleteIcon from "@mui/icons-material/Delete";
-import { useHistory } from "react-router-dom";
-import { useDeleteRecipe, useRecipes } from "../../api";
-import { Recipe } from "../../api/types";
+
+import { useDeleteRecipe, useRecipes, Recipe } from "../../api";
 
 export const DeleteFooter: FC<{ recipe: Recipe }> = ({ recipe }) => {
   const { refetch: refetchRecipes, data: recipes } = useRecipes();
