@@ -10,6 +10,8 @@ import { useQuery } from "../../useQuery";
 import { RecipeItem } from "./RecipeItem";
 import { RecipeListHeader } from "./RecipeListHeader";
 
+const DEBOUNCE_TIME = 300;
+
 export const RecipeList: FC = () => {
   const query = useQuery();
   const history = useHistory();
@@ -17,7 +19,7 @@ export const RecipeList: FC = () => {
 
   const [recipeModalOpen, setRecipeModalOpen] = useState(false);
   const [search, setSearch] = useState(query.get("search") || "");
-  const debouncedSearch = useDebounce(search, 500);
+  const debouncedSearch = useDebounce(search, DEBOUNCE_TIME);
 
   useEffect(() => {
     const params = new URLSearchParams({ search: debouncedSearch });

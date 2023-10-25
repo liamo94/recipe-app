@@ -1,8 +1,10 @@
 import { render, screen } from "@testing-library/react";
 import { App } from "./App";
 
-test("renders learn react link", () => {
-  render(<App />);
-  const text = screen.getByText("Recipes");
-  expect(text).toBeDefined();
+describe("Recipe", () => {
+  it('Should render "Recipes"', () => {
+    render(<App />);
+    const text = screen.getByText("Recipes");
+    expect(text).toBeDefined();
+  });
 });

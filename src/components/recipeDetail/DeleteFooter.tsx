@@ -3,9 +3,9 @@ import { useHistory } from "react-router-dom";
 import { styled } from "styled-components";
 import { Button } from "@mui/material";
 import DeleteIcon from "@mui/icons-material/Delete";
+import { useQueryClient } from "react-query";
 
 import { useDeleteRecipe, useRecipes, Recipe } from "../../api";
-import { useQueryClient } from "react-query";
 
 export const DeleteFooter: FC<{ recipe: Recipe }> = ({ recipe }) => {
   const { data: recipes } = useRecipes();

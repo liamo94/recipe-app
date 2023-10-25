@@ -1,8 +1,8 @@
-import { Button, TextField, Typography } from "@mui/material";
 import { FC, useState } from "react";
+import { styled } from "styled-components";
+import { Button, TextField, Typography } from "@mui/material";
 import AddIcon from "@mui/icons-material/Add";
 
-import { styled } from "styled-components";
 import { RecipeModal } from "../RecipeModal";
 
 export const RecipeListHeader: FC<{

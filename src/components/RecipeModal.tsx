@@ -2,7 +2,6 @@ import { FC, useState, ChangeEvent } from "react";
 import { useHistory } from "react-router-dom";
 import { styled } from "styled-components";
 import { useQueryClient } from "react-query";
-
 import {
   Button,
   Dialog,
@@ -23,7 +22,6 @@ import {
 interface RecipeModalProps {
   open: boolean;
   onClose: () => void;
-  onUpsert?: () => void;
   recipe?: Recipe;
 }
 export const RecipeModal: FC<RecipeModalProps> = ({
@@ -42,14 +40,13 @@ export const RecipeModal: FC<RecipeModalProps> = ({
   const queryClient = useQueryClient();
   const { data: recipes } = useRecipes();
 
-  const updateRecipes = (newRecipe: Recipe, isEdit = false) => {
-    return queryClient.setQueriesData(
+  const updateRecipes = (newRecipe: Recipe, isEdit = false) =>
+    queryClient.setQueriesData(
       ["recipes"],
       isEdit
         ? recipes?.map((r) => (r.id === newRecipe.id ? newRecipe : r))
         : [newRecipe, ...(recipes || [])]
     );
-  };
 
   const history = useHistory();
   const createOrUpdateRecipe = async () => {
