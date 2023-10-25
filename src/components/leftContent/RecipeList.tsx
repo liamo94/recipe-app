@@ -1,7 +1,7 @@
 import { FC, useState, useEffect } from "react";
 import { useHistory, useLocation } from "react-router-dom";
 import styled from "styled-components";
-import { CircularProgress, TextField, Typography } from "@mui/material";
+import { CircularProgress, Typography } from "@mui/material";
 import { useDebounce } from "@uidotdev/usehooks";
 
 import { RecipeModal } from "../RecipeModal";
@@ -59,18 +59,6 @@ const Container = styled.div`
   background: ${({ theme }) => theme.palette.grey["100"]};
 `;
 
-const Header = styled.div`
-  border-bottom: 1px solid grey;
-  padding: ${({ theme }) => theme.spacing(2)};
-`;
-
-const TitleButton = styled.div`
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  margin-bottom: ${({ theme }) => theme.spacing(2)};
-`;
-
 const Recipes = styled.div`
   display: flex;
   flex-direction: column;
@@ -79,15 +67,4 @@ const Recipes = styled.div`
   :not(:last-child) {
     border-bottom: 1px solid grey;
   }
-`;
-
-const Title = styled(Typography)`
-  && {
-    font-weight: 600;
-    font-size: 1.2rem;
-  }
-`;
-
-const SearchBox = styled(TextField)`
-  width: 100%;
 `;

@@ -2,8 +2,6 @@ import { Button, TextField, Typography } from "@mui/material";
 import { FC, useState } from "react";
 import AddIcon from "@mui/icons-material/Add";
 
-import { useQuery } from "../../useQuery";
-
 import { styled } from "styled-components";
 import { RecipeModal } from "../RecipeModal";
 

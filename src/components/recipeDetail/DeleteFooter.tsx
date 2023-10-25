@@ -5,9 +5,11 @@ import { Button } from "@mui/material";
 import DeleteIcon from "@mui/icons-material/Delete";
 
 import { useDeleteRecipe, useRecipes, Recipe } from "../../api";
+import { useQueryClient } from "react-query";
 
 export const DeleteFooter: FC<{ recipe: Recipe }> = ({ recipe }) => {
-  const { refetch: refetchRecipes, data: recipes } = useRecipes();
+  const { data: recipes } = useRecipes();
+  const queryClient = useQueryClient();
 
   const deleteRecipeMutation = useDeleteRecipe(recipe.id);
   const history = useHistory();
@@ -18,7 +20,7 @@ export const DeleteFooter: FC<{ recipe: Recipe }> = ({ recipe }) => {
         const path = `/recipes${
           newRecipes?.length ? `/${newRecipes[0].id}` : ""
         }`;
-        refetchRecipes();
+        queryClient.setQueriesData(["recipes"], newRecipes);
         history.push(path);
       },
     });

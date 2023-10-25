@@ -4,8 +4,9 @@ import { IngredientNoId, Recipe } from "../types";
 
 export const useRecipes = (search?: string) =>
   useQuery({
-    queryKey: ["recipes", search],
+    queryKey: ["recipes", `search=${search}`],
     queryFn: () => apiService.getRecipes(search),
+    retry: 3,
   });
 
 export const useRecipe = (id?: Recipe["id"]) =>

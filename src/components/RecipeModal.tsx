@@ -1,6 +1,8 @@
 import { FC, useState, ChangeEvent } from "react";
 import { useHistory } from "react-router-dom";
 import { styled } from "styled-components";
+import { useQueryClient } from "react-query";
+
 import {
   Button,
   Dialog,
@@ -36,18 +38,32 @@ export const RecipeModal: FC<RecipeModalProps> = ({
   const { mutateAsync: createRecipe } = useCreateRecipe();
   const { mutateAsync: updateRecipe } = useUpdateRecipe();
   const { refetch: refetchRecipe } = useRecipe(initialRecipe?.id);
+  const queryClient = useQueryClient();
+  const { data: recipes } = useRecipes();
+
+  const updateRecipes = (newRecipe: Recipe, isEdit = false) => {
+    return queryClient.setQueriesData(
+      ["recipes"],
+      isEdit
+        ? recipes?.map((r) => (r.id === newRecipe.id ? newRecipe : r))
+        : [newRecipe, ...(recipes || [])]
+    );
+  };
 
   const history = useHistory();
-  const { refetch: refetchRecipes } = useRecipes();
   const createOrUpdateRecipe = async () => {
     try {
       const newRecipe = isEdit
         ? await updateRecipe(recipe)
         : await createRecipe(recipe);
-      refetchRecipes();
+      updateRecipes(newRecipe, isEdit);
 
-      if (isEdit) refetchRecipe();
-      history.push(`/recipes/${newRecipe.id}`);
+      if (isEdit) {
+        refetchRecipe();
+      }
+      if (!isEdit) {
+        history.push(`/recipes/${newRecipe.id}`);
+      }
       onClose();
     } catch (e) {
       console.error(e);
