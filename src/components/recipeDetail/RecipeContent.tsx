@@ -1,16 +1,17 @@
-import { Button, Typography } from "@mui/material";
-import { FC } from "react";
+import { Button } from "@mui/material";
+import { FC, useState } from "react";
 import { Route, Switch } from "react-router-dom";
 import { styled } from "styled-components";
 import { RecipeDetails } from "./RecipeDetails";
+import { RecipeModal } from "../RecipeModal";
 
 export const RecipeContent: FC = () => {
   return (
     <Switch>
-      <Route exact path="/">
+      <Route exact path="/recipes">
         <CreateRecipe />
       </Route>
-      <Route path={`/:recipeId`}>
+      <Route path={`/recipes/:recipeId`}>
         <RecipeDetails />
       </Route>
     </Switch>
@@ -18,12 +19,19 @@ export const RecipeContent: FC = () => {
 };
 
 const CreateRecipe: FC = () => {
+  const [recipeModalOpen, setRecipeModalOpen] = useState(false);
+
   return (
     <NoContent>
-      <Text>
-        <StyledButton>Create a Recipe</StyledButton>
-        <Typography>to get started.</Typography>
-      </Text>
+      <StyledButton onClick={() => setRecipeModalOpen(true)}>
+        Create a Recipe
+      </StyledButton>
+      {recipeModalOpen && (
+        <RecipeModal
+          open={recipeModalOpen}
+          onClose={() => setRecipeModalOpen((v) => !v)}
+        />
+      )}
     </NoContent>
   );
 };
@@ -33,11 +41,6 @@ const NoContent = styled.div`
   align-items: center;
   justify-content: center;
   flex: 1;
-`;
-
-const Text = styled.span`
-  display: flex;
-  align-items: center;
 `;
 
 const StyledButton = styled(Button)`

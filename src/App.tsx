@@ -1,7 +1,6 @@
 import { FC, PropsWithChildren } from "react";
 import "./App.scss";
-import { RecipeContent, RecipeList } from "./components";
-import { createGlobalStyle, styled, ThemeProvider } from "styled-components";
+import { createGlobalStyle, ThemeProvider } from "styled-components";
 
 import {
   CssBaseline,
@@ -9,25 +8,41 @@ import {
   createTheme,
 } from "@mui/material";
 import { QueryClient, QueryClientProvider } from "react-query";
-import { BrowserRouter as Router } from "react-router-dom";
+import { PageRouter } from "./Router";
 
 export const GlobalStyle = createGlobalStyle`
   .MuiButton-text, .MuiButtonBase-root {
     && {
         text-transform: none;
+        font-size: 16px;
     }
   }
 `;
 
 export const BaseStyle: FC<PropsWithChildren> = ({ children }) => {
-  const theme = createTheme();
+  const theme = createTheme({
+    typography: {
+      h1: {
+        fontSize: "24px",
+        fontWeight: 700,
+      },
+      h2: {
+        fontSize: "20px",
+        fontWeight: 700,
+      },
+      h3: {
+        fontSize: "18px",
+        fontWeight: 700,
+      },
+    },
+  });
 
   return (
     <ThemeProvider theme={theme}>
       <MuiThemeProvider theme={theme}>
         <CssBaseline />
         <GlobalStyle />
-        <Router>{children}</Router>
+        {children}
       </MuiThemeProvider>
     </ThemeProvider>
   );
@@ -38,19 +53,10 @@ const App: FC = () => {
   return (
     <QueryClientProvider client={queryClient}>
       <BaseStyle>
-        <Container>
-          <RecipeList />
-          <RecipeContent />
-        </Container>
+        <PageRouter />
       </BaseStyle>
     </QueryClientProvider>
   );
 };
 
 export default App;
-
-const Container = styled.div`
-  display: flex;
-  gap: 8px;
-  height: 100%;
-`;

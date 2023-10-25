@@ -1,2 +1,2 @@
-export { RecipeList } from "./RecipeList";
-export { RecipeContent } from "./RecipeContent";
+export { RecipeList } from "./leftContent";
+export { RecipeContent } from "./recipeDetail";

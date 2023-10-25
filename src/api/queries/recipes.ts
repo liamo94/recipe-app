@@ -1,20 +1,42 @@
-import { useQuery } from "react-query";
-import { getUrlPath } from "./utils";
+import { useMutation, useQuery } from "react-query";
+import { apiService } from "../service";
+import { IngredientNoId, Recipe } from "../types";
 
-export const useRecipes = () =>
+export const useRecipes = (search?: string) =>
   useQuery({
     queryKey: ["recipes"],
-    queryFn: () =>
-      fetch(getUrlPath("recipe/recipes")).then(
-        (res) => res.json() as Promise<any[]>
-      ),
+    queryFn: () => apiService.getRecipes(search),
   });
 
-export const useRecipe = (id: string) =>
+export const useRecipe = (id?: Recipe["id"]) =>
   useQuery({
     queryKey: ["recipe", id],
-    queryFn: () =>
-      fetch(getUrlPath(`recipe/recipes/${id}`)).then(
-        (res) => res.json() as Promise<any>
-      ),
+    queryFn: () => apiService.getRecipe(id!),
+    enabled: !!id,
+  });
+
+export const useDeleteRecipe = (id: Recipe["id"]) =>
+  useMutation({
+    mutationKey: ["DELETE", "recipe", id],
+    mutationFn: () => apiService.deleteRecipe(id),
+  });
+
+export const useCreateRecipe = () =>
+  useMutation({
+    mutationKey: ["CREATE", "recipe"],
+    mutationFn: (recipe: Omit<Recipe, "id">) => apiService.postRecipe(recipe),
+  });
+
+export const useUpdateRecipe = () =>
+  useMutation({
+    mutationKey: ["UPDATE", "recipe"],
+    mutationFn: (
+      recipe: Omit<Recipe, "ingredients"> & { ingredients?: IngredientNoId[] }
+    ) => apiService.updateRecipe(recipe),
+  });
+
+export const useIngredients = () =>
+  useQuery({
+    queryKey: ["ingredients"],
+    queryFn: () => apiService.getIngredients(),
   });
