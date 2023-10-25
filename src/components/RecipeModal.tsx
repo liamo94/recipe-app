@@ -45,6 +45,7 @@ export const RecipeModal: FC<RecipeModalProps> = ({
         ? await updateRecipe(recipe)
         : await createRecipe(recipe);
       refetchRecipes();
+
       if (isEdit) refetchRecipe();
       history.push(`/recipes/${newRecipe.id}`);
       onClose();
