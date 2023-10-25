@@ -22,6 +22,9 @@ export const IngredientsContainer: FC<{ recipe: Recipe }> = ({ recipe }) => {
         {ingredients?.map((ingredient) => (
           <IngredientContainer ingredient={ingredient} key={ingredient.id} />
         ))}
+        {!ingredients?.length && (
+          <Typography variant="caption">No ingredients set</Typography>
+        )}
       </AllIngredients>
       <IngredientSearch recipe={recipe} />
     </Container>
@@ -31,7 +34,7 @@ export const IngredientsContainer: FC<{ recipe: Recipe }> = ({ recipe }) => {
 const Container = styled.div`
   display: flex;
   flex-direction: column;
-  gap: ${({ theme }) => theme.spacing(4)};
+  gap: ${({ theme }) => theme.spacing(2)};
 `;
 
 const IngredientContainer: FC<{ ingredient: Ingredient }> = ({

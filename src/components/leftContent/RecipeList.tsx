@@ -1,7 +1,7 @@
 import { FC, useState, useEffect } from "react";
 import { useHistory, useLocation } from "react-router-dom";
 import styled from "styled-components";
-import { TextField, Typography } from "@mui/material";
+import { CircularProgress, TextField, Typography } from "@mui/material";
 import { useDebounce } from "@uidotdev/usehooks";
 
 import { RecipeModal } from "../RecipeModal";
@@ -24,15 +24,19 @@ export const RecipeList: FC = () => {
     history.replace({ pathname, search: params.toString() });
   }, [debouncedSearch, history, pathname]);
 
-  console.log(debouncedSearch);
-  const { data: recipes } = useRecipes(debouncedSearch ? debouncedSearch : "");
-
-  //TODO handle loading and error
+  const {
+    data: recipes,
+    isLoading,
+    isError,
+  } = useRecipes(debouncedSearch ? debouncedSearch : "");
 
   return (
     <Container>
       <RecipeListHeader search={search} setSearch={setSearch} />
       <Recipes>
+        {isLoading && <CircularProgress />}
+        {isError && <Typography>Something went wrong</Typography>}
+
         {recipes?.map((recipe) => (
           <RecipeItem key={recipe.id} recipe={recipe} />
         ))}

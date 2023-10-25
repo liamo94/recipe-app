@@ -51,4 +51,5 @@ const TopBar = styled.section`
   display: flex;
   align-items: center;
   justify-content: space-between;
+  margin-bottom: ${({ theme }) => theme.spacing(2)};
 `;
