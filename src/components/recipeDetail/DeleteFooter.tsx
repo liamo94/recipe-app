@@ -36,7 +36,7 @@ export const DeleteFooter: FC<{ recipe: Recipe }> = ({ recipe }) => {
 
 const Container = styled.footer`
   position: absolute;
-  bottom: ${({ theme }) => theme.spacing(4)};
+  bottom: ${({ theme }) => theme.spacing(2)};
   left: 50%;
   transform: translate(-50%, -50%);
 `;

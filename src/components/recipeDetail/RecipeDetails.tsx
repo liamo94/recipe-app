@@ -32,7 +32,7 @@ export const RecipeDetails: FC = () => {
           />
         )}
       </TopBar>
-      {description && <p>{description}</p>}
+      {description && <Typography>{description}</Typography>}
       {ingredients && <IngredientsContainer recipe={recipe} />}
       <DeleteFooter recipe={recipe} />
     </Container>
@@ -44,7 +44,7 @@ const Container = styled.div`
   flex-direction: column;
   flex: 1;
   position: relative;
-  padding: ${({ theme }) => theme.spacing(0, 2)};
+  padding: ${({ theme }) => theme.spacing(2)};
 `;
 
 const TopBar = styled.section`

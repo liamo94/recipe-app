@@ -6,18 +6,16 @@ import { Button } from "@mui/material";
 import { RecipeDetails } from "./RecipeDetails";
 import { RecipeModal } from "../RecipeModal";
 
-export const RecipeContent: FC = () => {
-  return (
-    <Switch>
-      <Route exact path="/recipes">
-        <CreateRecipe />
-      </Route>
-      <Route path={`/recipes/:recipeId`}>
-        <RecipeDetails />
-      </Route>
-    </Switch>
-  );
-};
+export const RecipeContent: FC = () => (
+  <Switch>
+    <Route exact path="/recipes">
+      <CreateRecipe />
+    </Route>
+    <Route path={`/recipes/:recipeId`}>
+      <RecipeDetails />
+    </Route>
+  </Switch>
+);
 
 const CreateRecipe: FC = () => {
   const [recipeModalOpen, setRecipeModalOpen] = useState(false);

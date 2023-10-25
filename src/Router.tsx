@@ -26,6 +26,6 @@ export const PageRouter: FC = () => (
 
 const Container = styled.div`
   display: flex;
-  gap: 8px;
+  gap: ${({ theme }) => theme.spacing(1)};
   height: 100%;
 `;

@@ -32,6 +32,7 @@ export const RecipeModal: FC<RecipeModalProps> = ({
   recipe: initialRecipe,
 }) => {
   const isEdit = !!initialRecipe;
+  // For simplicity using local state rather than form library.
   const [recipe, setRecipe] = useState<Recipe>(
     initialRecipe || { title: "", id: 0 }
   );
@@ -78,7 +79,7 @@ export const RecipeModal: FC<RecipeModalProps> = ({
       fullWidth
       disableRestoreFocus
     >
-      <DialogTitle>Create recipe</DialogTitle>
+      <DialogTitle>{isEdit ? "Edit" : "Create"} recipe</DialogTitle>
       <DialogContent>
         <Content>
           <TextField
