@@ -4,6 +4,7 @@ import { useParams } from "react-router-dom";
 
 import {
   Ingredient,
+  URL_PARAMS,
   useIngredients,
   useRecipe,
   useUpdateRecipe,
@@ -12,7 +13,7 @@ import {
 export const IngredientChip: FC<{ ingredient: Ingredient }> = ({
   ingredient,
 }) => {
-  const { recipeId } = useParams<{ recipeId: string }>();
+  const { recipeId } = useParams<{ [URL_PARAMS.recipeId]: string }>();
   const { data: recipe } = useRecipe(+recipeId);
   const { refetch: refetchRecipe } = useRecipe(+recipeId);
   const { mutateAsync: updateRecipeMutation } = useUpdateRecipe();
@@ -21,12 +22,18 @@ export const IngredientChip: FC<{ ingredient: Ingredient }> = ({
   const updateRecipe = async (id: Ingredient["id"]) => {
     if (!recipe?.ingredients) return;
     try {
-      await updateRecipeMutation({
-        ...recipe,
-        ingredients: recipe.ingredients.filter((i) => id && id !== i.id),
-      });
-      refetchRecipe();
-      refetchIngredients();
+      await updateRecipeMutation(
+        {
+          ...recipe,
+          ingredients: recipe.ingredients.filter((i) => id && id !== i.id),
+        },
+        {
+          onSuccess: () => {
+            refetchRecipe();
+            refetchIngredients();
+          },
+        }
+      );
     } catch (e) {
       console.error(e);
     }

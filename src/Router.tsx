@@ -7,14 +7,15 @@ import {
 } from "react-router-dom";
 import { styled } from "styled-components";
 import { RecipeContent, RecipeList } from "./components";
+import { URL_PATHS } from "./api";
 
 export const PageRouter: FC = () => (
   <Router>
     <Switch>
       <Route exact path="/">
-        <Redirect to="recipes" />
+        <Redirect to={URL_PATHS.recipes} />
       </Route>
-      <Route path="/recipes">
+      <Route path={`/${URL_PATHS.recipes}`}>
         <Container>
           <RecipeList />
           <RecipeContent />

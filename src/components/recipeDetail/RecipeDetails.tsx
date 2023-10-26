@@ -7,10 +7,10 @@ import EditIcon from "@mui/icons-material/Edit";
 import { IngredientsContainer } from "./IngredientsContainer";
 import { RecipeModal } from "../RecipeModal";
 import { DeleteFooter } from "./DeleteFooter";
-import { useRecipe } from "../../api";
+import { URL_PARAMS, useRecipe } from "../../api";
 
 export const RecipeDetails: FC = () => {
-  const { recipeId } = useParams<{ recipeId: string }>();
+  const { recipeId } = useParams<{ [URL_PARAMS.recipeId]: string }>();
   const { data: recipe, isLoading } = useRecipe(+recipeId);
   const [recipeModalOpen, setRecipeModalOpen] = useState(false);
 

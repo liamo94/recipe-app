@@ -14,3 +14,17 @@ export type Ingredient = {
 };
 
 export type IngredientNoId = Pick<Ingredient, "name">;
+
+export const QUERY_KEYS = {
+  recipes: "recipes",
+  recipe: "recipe",
+  ingredients: "ingredients",
+} as const;
+
+export enum URL_PATHS {
+  recipes = "recipes",
+}
+
+export enum URL_PARAMS {
+  recipeId = "recipeId",
+}

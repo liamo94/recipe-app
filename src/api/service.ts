@@ -17,9 +17,6 @@ class Service {
     return this.getData<Recipe>(`${BASE_RECIPE_URL}/`, {
       method: "POST",
       body: JSON.stringify(recipe),
-      headers: {
-        "Content-Type": "application/json",
-      },
     });
   }
 
@@ -30,9 +27,6 @@ class Service {
     return this.getData<Recipe>(`${BASE_RECIPE_URL}/${id}/`, {
       method: "PATCH",
       body: JSON.stringify(recipe),
-      headers: {
-        "Content-Type": "application/json",
-      },
     });
   }
 
@@ -46,7 +40,13 @@ class Service {
 
   private getData<T>(url: string, fetchParams?: RequestInit) {
     return new Promise<T>((resolve, reject) => {
-      fetch(getUrlPath(url), fetchParams)
+      fetch(getUrlPath(url), {
+        ...fetchParams,
+        headers: {
+          ...fetchParams?.headers,
+          "Content-Type": "application/json",
+        },
+      })
         .then((res) => res.json())
         .then((res) => resolve(res))
         .catch((res) => reject(res));

@@ -5,13 +5,14 @@ import { Button } from "@mui/material";
 
 import { RecipeDetails } from "./RecipeDetails";
 import { RecipeModal } from "../RecipeModal";
+import { URL_PARAMS, URL_PATHS } from "../../api";
 
 export const RecipeContent: FC = () => (
   <Switch>
-    <Route exact path="/recipes">
+    <Route exact path={`/${URL_PATHS.recipes}`}>
       <CreateRecipe />
     </Route>
-    <Route path={`/recipes/:recipeId`}>
+    <Route path={`/${URL_PATHS.recipes}/:${URL_PARAMS.recipeId}`}>
       <RecipeDetails />
     </Route>
   </Switch>

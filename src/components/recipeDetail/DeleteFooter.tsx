@@ -5,22 +5,28 @@ import { Button } from "@mui/material";
 import DeleteIcon from "@mui/icons-material/Delete";
 import { useQueryClient } from "react-query";
 
-import { useDeleteRecipe, useRecipes, Recipe } from "../../api";
+import {
+  useDeleteRecipe,
+  useRecipes,
+  Recipe,
+  QUERY_KEYS,
+  URL_PATHS,
+} from "../../api";
 
 export const DeleteFooter: FC<{ recipe: Recipe }> = ({ recipe }) => {
   const { data: recipes } = useRecipes();
   const queryClient = useQueryClient();
 
-  const deleteRecipeMutation = useDeleteRecipe(recipe.id);
+  const { mutate: deleteRecipeMutation } = useDeleteRecipe(recipe.id);
   const history = useHistory();
   const deleteRecipe = () => {
-    deleteRecipeMutation.mutate(undefined, {
+    deleteRecipeMutation(undefined, {
       onSuccess: () => {
         const newRecipes = recipes?.filter((r) => r.id !== recipe.id);
-        const path = `/recipes${
+        const path = `/${URL_PATHS.recipes}${
           newRecipes?.length ? `/${newRecipes[0].id}` : ""
         }`;
-        queryClient.setQueriesData(["recipes"], newRecipes);
+        queryClient.setQueriesData([QUERY_KEYS.recipes], newRecipes);
         history.push(path);
       },
     });

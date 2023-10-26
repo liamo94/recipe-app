@@ -12,7 +12,9 @@ import {
 } from "@mui/material";
 
 import {
+  QUERY_KEYS,
   Recipe,
+  URL_PATHS,
   useCreateRecipe,
   useRecipe,
   useRecipes,
@@ -42,7 +44,7 @@ export const RecipeModal: FC<RecipeModalProps> = ({
 
   const updateRecipes = (newRecipe: Recipe, isEdit = false) =>
     queryClient.setQueriesData(
-      ["recipes"],
+      [QUERY_KEYS.recipes],
       isEdit
         ? recipes?.map((r) => (r.id === newRecipe.id ? newRecipe : r))
         : [newRecipe, ...(recipes || [])]
@@ -60,7 +62,7 @@ export const RecipeModal: FC<RecipeModalProps> = ({
         refetchRecipe();
       }
       if (!isEdit) {
-        history.push(`/recipes/${newRecipe.id}`);
+        history.push(`/${URL_PATHS.recipes}/${newRecipe.id}`);
       }
       onClose();
     } catch (e) {
