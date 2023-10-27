@@ -1,4 +1,4 @@
-import { FC, useState, ChangeEvent } from "react";
+import { useState, ChangeEvent } from "react";
 import { useHistory } from "react-router-dom";
 import { styled } from "styled-components";
 import { useQueryClient } from "react-query";
@@ -26,11 +26,11 @@ interface RecipeModalProps {
   onClose: () => void;
   recipe?: Recipe;
 }
-export const RecipeModal: FC<RecipeModalProps> = ({
+export const RecipeModal = ({
   open,
   onClose,
   recipe: initialRecipe,
-}) => {
+}: RecipeModalProps) => {
   const isEdit = !!initialRecipe;
   // For simplicity using local state rather than form library.
   const [recipe, setRecipe] = useState<Recipe>(

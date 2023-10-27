@@ -1,4 +1,4 @@
-import { FC, useState } from "react";
+import { useState } from "react";
 import { Route, Switch } from "react-router-dom";
 import { styled } from "styled-components";
 import { Button } from "@mui/material";
@@ -7,7 +7,7 @@ import { RecipeDetails } from "./RecipeDetails";
 import { RecipeModal } from "../RecipeModal";
 import { URL_PARAMS, URL_PATHS } from "../../api";
 
-export const RecipeContent: FC = () => (
+export const RecipeContent = () => (
   <Switch>
     <Route exact path={`/${URL_PATHS.recipes}`}>
       <CreateRecipe />
@@ -18,7 +18,7 @@ export const RecipeContent: FC = () => (
   </Switch>
 );
 
-const CreateRecipe: FC = () => {
+const CreateRecipe = () => {
   const [recipeModalOpen, setRecipeModalOpen] = useState(false);
 
   return (

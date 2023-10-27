@@ -1,4 +1,3 @@
-import { FC } from "react";
 import { useHistory } from "react-router-dom";
 import { styled } from "styled-components";
 import { Button } from "@mui/material";
@@ -13,7 +12,7 @@ import {
   URL_PATHS,
 } from "../../api";
 
-export const DeleteFooter: FC<{ recipe: Recipe }> = ({ recipe }) => {
+export const DeleteFooter = ({ recipe }: { recipe: Recipe }) => {
   const { data: recipes } = useRecipes();
   const queryClient = useQueryClient();
 

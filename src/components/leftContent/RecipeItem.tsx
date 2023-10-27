@@ -1,10 +1,9 @@
-import { FC } from "react";
 import { Link, useLocation, useRouteMatch } from "react-router-dom";
 import { styled } from "styled-components";
 
 import { Recipe } from "../../api";
 
-export const RecipeItem: FC<{ recipe: Recipe }> = ({ recipe }) => {
+export const RecipeItem = ({ recipe }: { recipe: Recipe }) => {
   const { url } = useRouteMatch();
   const { pathname } = useLocation();
 

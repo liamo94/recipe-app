@@ -1,14 +1,17 @@
-import { FC, useState } from "react";
+import { useState } from "react";
 import { styled } from "styled-components";
 import { Button, TextField, Typography } from "@mui/material";
 import AddIcon from "@mui/icons-material/Add";
 
 import { RecipeModal } from "../RecipeModal";
 
-export const RecipeListHeader: FC<{
+export const RecipeListHeader = ({
+  search,
+  setSearch,
+}: {
   search: string;
   setSearch: (s: string) => void;
-}> = ({ search, setSearch }) => {
+}) => {
   const [recipeModalOpen, setRecipeModalOpen] = useState(false);
 
   return (

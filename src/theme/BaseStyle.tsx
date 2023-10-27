@@ -1,4 +1,4 @@
-import { FC, PropsWithChildren } from "react";
+import { PropsWithChildren } from "react";
 import { createGlobalStyle, ThemeProvider } from "styled-components";
 
 import {
@@ -16,7 +16,7 @@ export const GlobalStyle = createGlobalStyle`
   }
 `;
 
-export const BaseStyle: FC<PropsWithChildren> = ({ children }) => {
+export const BaseStyle = ({ children }: PropsWithChildren) => {
   const theme = createTheme({
     typography: {
       h1: {

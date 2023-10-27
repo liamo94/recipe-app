@@ -1,4 +1,3 @@
-import { FC } from "react";
 import { Autocomplete, TextField, createFilterOptions } from "@mui/material";
 import {
   useIngredients,
@@ -14,7 +13,7 @@ interface IngredientOptionType extends Ingredient {
 
 const filter = createFilterOptions<IngredientOptionType>();
 
-export const IngredientSearch: FC<{ recipe: Recipe }> = ({ recipe }) => {
+export const IngredientSearch = ({ recipe }: { recipe: Recipe }) => {
   const { data: allIngredients } = useIngredients();
   const { refetch: refetchRecipe } = useRecipe(recipe.id);
   const { mutateAsync: updateRecipeMutation } = useUpdateRecipe();

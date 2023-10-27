@@ -1,4 +1,3 @@
-import { FC } from "react";
 import { Chip } from "@mui/material";
 import { useParams } from "react-router-dom";
 
@@ -10,9 +9,7 @@ import {
   useUpdateRecipe,
 } from "../../api";
 
-export const IngredientChip: FC<{ ingredient: Ingredient }> = ({
-  ingredient,
-}) => {
+export const IngredientChip = ({ ingredient }: { ingredient: Ingredient }) => {
   const { recipeId } = useParams<{ [URL_PARAMS.recipeId]: string }>();
   const { data: recipe } = useRecipe(+recipeId);
   const { refetch: refetchRecipe } = useRecipe(+recipeId);

@@ -1,4 +1,3 @@
-import { FC } from "react";
 import {
   Redirect,
   Route,
@@ -9,7 +8,7 @@ import { styled } from "styled-components";
 import { RecipeContent, RecipeList } from "./components";
 import { URL_PATHS } from "./api";
 
-export const PageRouter: FC = () => (
+export const PageRouter = () => (
   <Router>
     <Switch>
       <Route exact path="/">

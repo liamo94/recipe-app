@@ -1,4 +1,3 @@
-import { FC } from "react";
 import { styled } from "styled-components";
 import { Typography } from "@mui/material";
 
@@ -6,7 +5,7 @@ import { IngredientSearch } from "./IngredientSearch";
 import { Recipe } from "../../api";
 import { IngredientChip } from "./Ingredient";
 
-export const IngredientsContainer: FC<{ recipe: Recipe }> = ({ recipe }) => {
+export const IngredientsContainer = ({ recipe }: { recipe: Recipe }) => {
   const { ingredients } = recipe;
 
   return (

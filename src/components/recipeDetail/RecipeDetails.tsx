@@ -1,4 +1,4 @@
-import { FC, useState } from "react";
+import { useState } from "react";
 import { useParams } from "react-router-dom";
 import { styled } from "styled-components";
 import { Button, CircularProgress, Typography } from "@mui/material";
@@ -9,7 +9,7 @@ import { RecipeModal } from "../RecipeModal";
 import { DeleteFooter } from "./DeleteFooter";
 import { URL_PARAMS, useRecipe } from "../../api";
 
-export const RecipeDetails: FC = () => {
+export const RecipeDetails = () => {
   const { recipeId } = useParams<{ [URL_PARAMS.recipeId]: string }>();
   const { data: recipe, isLoading } = useRecipe(+recipeId);
   const [recipeModalOpen, setRecipeModalOpen] = useState(false);

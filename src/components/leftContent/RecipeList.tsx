@@ -1,4 +1,4 @@
-import { FC, useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import { useHistory, useLocation } from "react-router-dom";
 import styled from "styled-components";
 import { CircularProgress, Typography } from "@mui/material";
@@ -12,7 +12,7 @@ import { RecipeListHeader } from "./RecipeListHeader";
 
 const DEBOUNCE_TIME = 300;
 
-export const RecipeList: FC = () => {
+export const RecipeList = () => {
   const query = useQuery();
   const history = useHistory();
   const { pathname } = useLocation();
