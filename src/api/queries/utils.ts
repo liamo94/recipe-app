@@ -1,6 +1,6 @@
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 type ValidPath<S extends string> = S extends `/${infer Rest}` ? never : S;
-const URL = process.env.REACT_APP_API_URL;
+const URL = process.env.REACT_APP_API_URL || "http://localhost:8000";
 
 export const getUrlPath = <S extends string>(subDomain: ValidPath<S>) =>
   `${URL}/api/${subDomain}`;

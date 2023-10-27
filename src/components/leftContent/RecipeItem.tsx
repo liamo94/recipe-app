@@ -11,17 +11,17 @@ export const RecipeItem: FC<{ recipe: Recipe }> = ({ recipe }) => {
   const recipeId = pathname.split("/")[2];
   return (
     <Link to={`${url}/${recipe.id}`}>
-      <RecipeContainer isSelected={!!recipeId && +recipeId === recipe.id}>
+      <RecipeContainer $isSelected={!!recipeId && +recipeId === recipe.id}>
         {recipe.title}
       </RecipeContainer>
     </Link>
   );
 };
 
-const RecipeContainer = styled.div<{ isSelected?: boolean }>`
+const RecipeContainer = styled.div<{ $isSelected?: boolean }>`
   padding: ${({ theme }) => theme.spacing(2, 1)};
-  background: ${({ theme, isSelected }) =>
-    isSelected ? theme.palette.grey["400"] : "inherit"};
+  background: ${({ theme, $isSelected }) =>
+    $isSelected ? theme.palette.grey["400"] : "inherit"};
   &:hover {
     background: ${({ theme }) => theme.palette.grey["300"]};
   }

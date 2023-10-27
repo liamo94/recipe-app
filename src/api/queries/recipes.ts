@@ -2,11 +2,12 @@ import { useMutation, useQuery } from "react-query";
 import { apiService } from "../service";
 import { IngredientNoId, QUERY_KEYS, Recipe } from "../types";
 
-export const useRecipes = (search?: string) =>
-  useQuery({
+export const useRecipes = (search?: string) => {
+  return useQuery({
     queryKey: [QUERY_KEYS.recipes, search],
     queryFn: () => apiService.getRecipes(search),
   });
+};
 
 export const useRecipe = (id?: Recipe["id"]) =>
   useQuery({

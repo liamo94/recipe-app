@@ -1,8 +1,8 @@
 import { getUrlPath } from "./queries/utils";
 import { Ingredient, IngredientNoId, Recipe } from "./types";
 
-const BASE_RECIPE_URL = "recipe/recipes";
-const BASE_INGREDIENTS_URL = "recipe/ingredients";
+export const BASE_RECIPE_URL = "recipe/recipes";
+export const BASE_INGREDIENTS_URL = "recipe/ingredients";
 
 class Service {
   getRecipes(search = "") {

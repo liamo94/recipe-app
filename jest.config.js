@@ -8,4 +8,8 @@ module.exports = {
   moduleNameMapper: {
     "\\.(scss)$": require.resolve("./emptyModule.js"),
   },
+  setupFilesAfterEnv: [
+    "<rootDir>/src/setupFetch.js",
+    "<rootDir>/src/setupTests.js",
+  ],
 };
