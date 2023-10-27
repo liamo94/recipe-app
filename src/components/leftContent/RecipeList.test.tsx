@@ -1,37 +1,28 @@
-import { FC } from "react";
 import { renderHook, screen, waitFor } from "@testing-library/react";
-import { QueryClient, QueryClientProvider } from "react-query";
+import nock from "nock";
 import { RecipeList } from "./RecipeList";
-import { BaseStyle } from "../../theme";
-import { Router } from "react-router-dom";
-import { createMemoryHistory } from "history";
 import { useRecipes } from "../../api";
+import { WrappedComponent } from "../../test/renderWithProviders";
 
-const RecipeListWithContent: FC = () => {
-  const queryClient = new QueryClient({
-    defaultOptions: {
-      queries: {
-        retry: false,
-      },
-    },
-  });
-  const history = createMemoryHistory();
-  return (
-    <Router history={history}>
-      <QueryClientProvider client={queryClient}>
-        <BaseStyle>
-          <RecipeList />
-        </BaseStyle>
-      </QueryClientProvider>
-    </Router>
-  );
-};
+const Component = () => (
+  <WrappedComponent>
+    <RecipeList />
+  </WrappedComponent>
+);
 
-describe("Test recipe list component", () => {
+beforeAll(() =>
+  nock("http://localhost:8000")
+    .get("/api/recipe/recipes")
+    .query(true)
+    .reply(200, [
+      { id: 1, title: "Recipe 1" },
+      { id: 2, title: "Recipe 2" },
+    ])
+);
+
+describe("Recipe list component", () => {
   it("should render recipe list", async () => {
-    const { result } = renderHook(() => useRecipes(), {
-      wrapper: RecipeListWithContent,
-    });
+    const { result } = renderHook(() => useRecipes(), { wrapper: Component });
 
     try {
       await waitFor(() => result.current.isSuccess);

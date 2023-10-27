@@ -9,7 +9,7 @@ module.exports = {
     "\\.(scss)$": require.resolve("./emptyModule.js"),
   },
   setupFilesAfterEnv: [
-    "<rootDir>/src/setupFetch.js",
-    "<rootDir>/src/setupTests.js",
+    "<rootDir>/src/test/setupFetch.js",
+    "<rootDir>/src/test/setupTests.js",
   ],
 };
