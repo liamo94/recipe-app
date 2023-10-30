@@ -47,7 +47,7 @@ export const RecipeModal = ({
       [QUERY_KEYS.recipes],
       isEdit
         ? recipes?.map((r) => (r.id === newRecipe.id ? newRecipe : r))
-        : [newRecipe, ...(recipes || [])]
+        : [...(recipes || []), newRecipe]
     );
 
   const history = useHistory();
